@@ -1,5 +1,5 @@
 // (1) import constant
-import { USER_LOGIN, USER_LOGOUT } from "./constans";
+import { USER_LOGIN, USER_LOGOUT } from "./constants";
 
 // (2) action userLogin
 export function userLogin(user, token) {

@@ -1,4 +1,4 @@
-import { USER_LOGIN, USER_LOGOUT } from "./constans";
+import { USER_LOGIN, USER_LOGOUT } from "./constants";
 
 let initialState = localStorage.getItem("auth")
   ? JSON.parse(localStorage.getItem("auth"))
