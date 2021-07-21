@@ -11,10 +11,12 @@ import { Provider } from "react-redux";
 import store from "./app/store";
 
 import { listen } from "./app/listener";
+import { getCart } from "./api/cart";
 
 function App() {
   React.useEffect(() => {
     listen();
+    getCart();
   }, []);
 
   return (
