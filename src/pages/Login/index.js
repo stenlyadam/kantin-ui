@@ -1,20 +1,19 @@
 import * as React from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
-  InputText,
-  InputPassword,
   Button,
-  FormControl,
   Card,
+  FormControl,
+  InputPassword,
+  InputText,
   LayoutOne,
 } from "upkit";
-import { useForm } from "react-hook-form";
-import { useHistory, Link } from "react-router-dom";
-
+import { login } from "../../api/auth";
 import StoreLogo from "../../components/StoreLogo";
-import { useDispatch } from "react-redux";
 import { userLogin } from "../../features/Auth/actions";
 import { rules } from "./validation";
-import { login } from "../../api/auth";
 
 const statuslist = {
   idle: "idle",
@@ -82,12 +81,12 @@ export default function Login() {
           </Button>
         </form>
 
-        <div className="text-center mt-2">
+        {/* <div className="text-center mt-2">
           Belum punya akun?{" "}
           <Link to="/register">
             <b>Daftar sekarang.</b>
           </Link>
-        </div>
+        </div> */}
       </Card>
     </LayoutOne>
   );

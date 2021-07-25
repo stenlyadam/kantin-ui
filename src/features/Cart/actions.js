@@ -3,7 +3,10 @@ import { ADD_ITEM, REMOVE_ITEM, CLEAR_ITEMS, SET_ITEMS } from "./constants";
 export function addItem(item) {
   return {
     type: ADD_ITEM,
-    item,
+    item: {
+      ...item,
+      product: item.product || item,
+    },
   };
 }
 

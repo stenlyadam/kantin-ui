@@ -32,6 +32,7 @@ export default function Home() {
 
   let history = useHistory();
 
+  console.log(cart);
   React.useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch, products.currentPage, products.keyword, products.category]);
