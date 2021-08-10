@@ -11,11 +11,11 @@ export default function TopBar() {
 
   return (
     <Responsive desktop={2} justify="between" items="center">
-      <div>
+      <div className="mt-5">
         <StoreLogo />
       </div>
 
-      <div className="mr-5 text-right">
+      <div className="mt-5 mr-5 text-right">
         <Link to={auth.user ? "/account" : "/login"}>
           <div className="mr-2 inline-block text-red-600 font-bold">
             {auth?.user?.full_name}

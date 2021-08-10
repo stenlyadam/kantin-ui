@@ -31,8 +31,6 @@ export default function Home() {
   let cart = useSelector((state) => state.cart);
 
   let history = useHistory();
-
-  console.log(cart);
   React.useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch, products.currentPage, products.keyword, products.category]);
@@ -75,12 +73,15 @@ export default function Home() {
                 {products.data.map((product, index) => {
                   return (
                     <div key={index} className="p-2">
-                      <CardProduct
-                        title={product.name}
-                        imgUrl={`${config.api_host}/upload/${product.image_url}`}
-                        price={product.price}
-                        onAddToCart={(_) => dispatch(addItem(product))}
-                      />
+                      {product.stock > 0 && (
+                        <CardProduct
+                          title={product.name}
+                          imgUrl={`${config.api_host}/upload/${product.image_url}`}
+                          price={product.price}
+                          subText={`Stok: ${product.stock} ${product.unit}`}
+                          onAddToCart={(_) => dispatch(addItem(product))}
+                        />
+                      )}
                     </div>
                   );
                 })}

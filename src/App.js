@@ -9,6 +9,12 @@ import Login from "./pages/Login";
 import Checkout from "./pages/Checkout";
 import UserAccount from "./pages/UserAccount";
 import OrderHistory from "./pages/OrderHistory";
+import ProductManagement from "./pages/Product/ProductManagement";
+import ProductAdd from "./pages/Product/ProductAdd";
+import ProductEdit from "./pages/Product/ProductEdit";
+import CustomerManagement from "./pages/Customer/CustomerManagement";
+import CustomerAdd from "./pages/Customer/CustomerAdd";
+import CustomerEdit from "./pages/Customer/CustomerEdit";
 import Logout from "./pages/Logout";
 import GuardRoute from "./components/GuardRoute";
 
@@ -39,6 +45,24 @@ function App() {
           </GuardRoute>
           <GuardRoute path="/account">
             <UserAccount />
+          </GuardRoute>
+          <GuardRoute path="/manajemen-produk">
+            <ProductManagement />
+          </GuardRoute>
+          <GuardRoute path="/add-product">
+            <ProductAdd />
+          </GuardRoute>
+          <GuardRoute path="/edit-produk/:product_id">
+            <ProductEdit />
+          </GuardRoute>
+          <GuardRoute path="/manajemen-pelanggan">
+            <CustomerManagement />
+          </GuardRoute>
+          <GuardRoute path="/add-customer">
+            <CustomerAdd />
+          </GuardRoute>
+          <GuardRoute path="/edit-customer/:customer_id">
+            <CustomerEdit />
           </GuardRoute>
           <GuardRoute path="/history">
             <OrderHistory />

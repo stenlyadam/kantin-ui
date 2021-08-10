@@ -4,11 +4,25 @@ import { getOrders } from "../../api/order";
 import TopBar from "../../components/TopBar";
 import { formatRupiah } from "../../utils/format-rupiah";
 import { sumPrice } from "../../utils/sum-price";
+import StatusLabel from "../../components/StatusLabel";
 
 const columns = [
   {
+    Header: "Order ID / Status",
+    id: "Status",
+    accessor: (order) => {
+      return (
+        <div>
+          #{order.order_number} <br />
+          <StatusLabel status={order.status} />
+        </div>
+      );
+    },
+  },
+  {
     Header: "Items",
     accessor: (order) => {
+      console.log(order);
       return (
         <div>
           {order.order_items.map((item) => {
@@ -63,7 +77,7 @@ export default function UserOrders() {
   return (
     <LayoutOne>
       <TopBar />
-      <Text as="h3"> Riwayat Pemesanan </Text>
+      <Text as="h3"> Daftar Pesanan </Text>
       <br />
 
       <Table

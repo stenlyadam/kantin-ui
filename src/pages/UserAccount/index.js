@@ -1,10 +1,12 @@
 import FaArrowRight from "@meronex/icons/fa/FaArrowRight";
 import FaFileInvoice from "@meronex/icons/fa/FaFileInvoice";
 import FaHome from "@meronex/icons/fa/FaHome";
+import FaDatabase from "@meronex/icons/fa/FaDatabase";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { Card, LayoutOne, Responsive, Text } from "upkit";
 import TopBar from "../../components/TopBar";
+import FaUser from "@meronex/icons/fa/FaUser";
 
 const IconWrapper = ({ children }) => {
   return (
@@ -32,6 +34,24 @@ const menus = [
       </IconWrapper>
     ),
     url: "/history",
+  },
+  {
+    label: "Manajemen Produk",
+    icon: (
+      <IconWrapper>
+        <FaDatabase />
+      </IconWrapper>
+    ),
+    url: "/manajemen-produk",
+  },
+  {
+    label: "Pelanggan",
+    icon: (
+      <IconWrapper>
+        <FaUser />
+      </IconWrapper>
+    ),
+    url: "/manajemen-pelanggan",
   },
   {
     label: "Logout",

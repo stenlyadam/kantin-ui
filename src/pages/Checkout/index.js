@@ -58,8 +58,6 @@ export default function Checkout() {
       delivery_fee: 10000,
     };
 
-    console.log(payload);
-
     let { data } = await createOrder(payload);
 
     if (data?.error) return;

@@ -19,6 +19,9 @@ export default function StatusLabel({ status }) {
     case "delivered":
       return <Badge color="green">Pesanan diterima</Badge>;
 
+    case "finished":
+      return <Badge color="green">Pesanan selesai</Badge>;
+
     default:
       return <div />;
   }
