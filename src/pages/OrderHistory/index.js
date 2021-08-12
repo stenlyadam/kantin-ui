@@ -20,15 +20,22 @@ const columns = [
     },
   },
   {
+    Header: "Pembayaran",
+    accessor: "payment_method",
+  },
+  {
+    Header: "Pelanggan",
+    accessor: "customer",
+  },
+  {
     Header: "Items",
     accessor: (order) => {
-      console.log(order);
       return (
         <div>
           {order.order_items.map((item) => {
             return (
               <div key={item._id}>
-                {item.name} ({item.qty})
+                {item.name} ({item.qty} {item.unit})
               </div>
             );
           })}
@@ -66,6 +73,7 @@ export default function UserOrders() {
     }
 
     setStatus("success");
+    console.log(data.data);
     setPesanan(data.data);
     setCount(data.count);
   }, [page, limit]);

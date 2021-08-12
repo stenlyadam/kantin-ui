@@ -16,9 +16,6 @@ const rules = {
   category: {
     required: { value: true, message: "Kategori tidak boleh kosong," },
   },
-  stok: {
-    required: { value: true, message: "Stok tidak boleh kosong," },
-  },
   unit: {
     required: { value: true, message: "Unit tidak boleh kosong," },
   },

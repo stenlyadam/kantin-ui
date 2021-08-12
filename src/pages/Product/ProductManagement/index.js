@@ -64,10 +64,9 @@ const ProductManagement = () => {
     { Header: "Nama", accessor: "name" },
     { Header: "Harga", accessor: (items) => formatRupiah(items.price) },
     {
-      Header: "Stok",
-      accessor: (items) => <div>{`${items.stock} ${items.unit}`}</div>,
+      Header: "Satuan",
+      accessor: (items) => <div>{`${items.unit}`}</div>,
     },
-
     {
       Header: "Kategori",
       accessor: (items) => {

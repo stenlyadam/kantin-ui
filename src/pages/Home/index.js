@@ -78,7 +78,7 @@ export default function Home() {
                           title={product.name}
                           imgUrl={`${config.api_host}/upload/${product.image_url}`}
                           price={product.price}
-                          subText={`Stok: ${product.stock} ${product.unit}`}
+                          subText={`Satuan: ${product.unit}`}
                           onAddToCart={(_) => dispatch(addItem(product))}
                         />
                       )}

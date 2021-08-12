@@ -34,7 +34,6 @@ const ProductEdit = () => {
         setProduct(data);
         setValue("nama_produk", data.name);
         setValue("price", data.price);
-        setValue("stok", data.stock);
         setValue("unit", data.unit);
         setValue("category", {
           label: data.category.name,
@@ -45,7 +44,6 @@ const ProductEdit = () => {
 
     register({ name: "nama_produk" }, rules.nama_produk);
     register({ name: "price" }, rules.price);
-    register({ name: "stok" }, rules.stok);
     register({ name: "category" }, rules.category);
     register({ name: "unit" }, rules.unit);
   }, [params, register, setValue]);
@@ -68,7 +66,6 @@ const ProductEdit = () => {
     payload.append("image", image.raw);
     payload.append("name", formHook.nama_produk);
     payload.append("price", formHook.price);
-    payload.append("stock", formHook.stok);
     payload.append("unit", formHook.unit);
     payload.append("category", formHook.category.label);
 
@@ -134,20 +131,6 @@ const ProductEdit = () => {
               name="price"
               value={getValues().price}
               ref={register(rules.price)}
-            />
-          </FormControl>
-
-          <FormControl
-            label="Stok"
-            errorMessage={errors.stok?.message}
-            color="black"
-          >
-            <InputText
-              placeholder="Stok"
-              fitContainer
-              name="stok"
-              value={getValues().stok}
-              ref={register(rules.stok)}
             />
           </FormControl>
 

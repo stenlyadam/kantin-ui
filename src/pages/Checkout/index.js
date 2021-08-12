@@ -1,26 +1,23 @@
+import FaRegCheckCircle from "@meronex/icons/fa/FaRegCheckCircle";
 import * as React from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
 import {
-  LayoutOne,
-  Text,
-  Table,
   Button,
-  //   Select,
-  //   FormControl,
+  FormControl,
+  LayoutOne,
   LayoutSidebar,
+  Select,
+  Table,
+  Text,
 } from "upkit";
-import { useSelector, useDispatch } from "react-redux";
-
+import { createOrder } from "../../api/order";
+import SelectCustomer from "../../components/SelectCustomer";
 import TopBar from "../../components/TopBar";
-
+import { clearItems } from "../../features/Cart/actions";
 import { formatRupiah } from "../../utils/format-rupiah";
 import { sumPrice } from "../../utils/sum-price";
-
-import FaRegCheckCircle from "@meronex/icons/fa/FaRegCheckCircle";
-
-import { createOrder } from "../../api/order";
-
-import { useHistory, Redirect } from "react-router-dom";
-import { clearItems } from "../../features/Cart/actions";
 
 const columns = [
   {
@@ -48,23 +45,33 @@ const columns = [
 export default function Checkout() {
   let cart = useSelector((state) => state.cart);
 
+  let { setValue, getValues, handleSubmit, register } = useForm();
+
   let history = useHistory();
   let dispatch = useDispatch();
 
-  //   let [selected, setSelected] = React.useState({ label: "Cash", id: "cash" });
+  let [paymentMethod, setPaymentMethod] = React.useState({
+    label: "Cash",
+    id: "cash",
+  });
 
-  async function handleCreateOrder() {
+  async function handleCreateOrder(formHook) {
     let payload = {
-      delivery_fee: 10000,
+      payment_method: paymentMethod.value,
+      customer: paymentMethod.label === "Charge" ? formHook.customer.value : "",
     };
 
     let { data } = await createOrder(payload);
 
+    console.log(data);
     if (data?.error) return;
 
     history.push("/");
     dispatch(clearItems());
   }
+
+  const updateValue = (field, value) =>
+    setValue(field, value, { shouldValidate: true, shouldDirty: true });
 
   if (!cart.length) {
     return <Redirect to="/" />;
@@ -90,22 +97,31 @@ export default function Checkout() {
             sidebarPosition="right"
             sidebar={
               <div className="text-left ">
-                {/* <FormControl label="Metode Bayar" color="black">
+                <FormControl label="Metode Bayar" color="black">
                   <Select
                     options={[
                       { label: "Cash", value: "cash" },
                       { label: "Charge", value: "charge" },
                     ]}
-                    onChange={(selected) => setSelected(selected)}
-                    value={selected}
+                    onChange={(selected) => setPaymentMethod(selected)}
+                    value={paymentMethod}
                   />
-                </FormControl> */}
+                </FormControl>
+                {paymentMethod.label === "Charge" && (
+                  <FormControl label="Customer" color="black">
+                    <SelectCustomer
+                      onChange={(option) => updateValue("customer", option)}
+                      value={getValues().customer}
+                      {...register("customer")}
+                    />
+                  </FormControl>
+                )}
               </div>
             }
           />
           <Button
             className="p-4"
-            onClick={handleCreateOrder}
+            onClick={handleSubmit(handleCreateOrder)}
             color="red"
             iconBefore={<FaRegCheckCircle />}
           >

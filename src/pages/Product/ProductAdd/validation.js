@@ -22,8 +22,5 @@ const rules = {
   unit: {
     required: { value: true, message: "Unit tidak boleh kosong." },
   },
-  stok: {
-    required: { value: true, message: "Stok tidak boleh kosong." },
-  },
 };
 export { rules };

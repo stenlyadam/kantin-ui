@@ -40,7 +40,6 @@ const ProductAdd = () => {
     payload.append("image", image.raw);
     payload.append("name", formHook.nama_produk);
     payload.append("price", formHook.price);
-    payload.append("stock", formHook.stok);
     payload.append("unit", formHook.unit);
     payload.append("category", formHook.category.label);
 
@@ -82,19 +81,6 @@ const ProductAdd = () => {
               fitContainer
               name="price"
               ref={register(rules.price)}
-            />
-          </FormControl>
-
-          <FormControl
-            label="Stok"
-            errorMessage={errors.stok?.message}
-            color="black"
-          >
-            <InputText
-              placeholder="Stok"
-              fitContainer
-              name="stok"
-              ref={register(rules.stok)}
             />
           </FormControl>
 
