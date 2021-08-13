@@ -20,12 +20,10 @@ const columns = [
     },
   },
   {
-    Header: "Pembayaran",
-    accessor: "payment_method",
-  },
-  {
     Header: "Pelanggan",
-    accessor: "customer",
+    accessor: (item) => {
+      return <div>{item.customer.full_name}</div>;
+    },
   },
   {
     Header: "Items",
@@ -67,13 +65,13 @@ export default function UserOrders() {
 
     let { data } = await getOrders({ limit, page });
 
+    console.log(data.data);
     if (data.error) {
       setStatus("error");
       return;
     }
 
     setStatus("success");
-    console.log(data.data);
     setPesanan(data.data);
     setCount(data.count);
   }, [page, limit]);
@@ -85,9 +83,9 @@ export default function UserOrders() {
   return (
     <LayoutOne>
       <TopBar />
+      <br />
       <Text as="h3"> Daftar Pesanan </Text>
       <br />
-
       <Table
         items={pesanan}
         totalItems={count}

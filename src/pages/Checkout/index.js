@@ -8,7 +8,6 @@ import {
   FormControl,
   LayoutOne,
   LayoutSidebar,
-  Select,
   Table,
   Text,
 } from "upkit";
@@ -26,7 +25,7 @@ const columns = [
   },
   {
     Header: "Jumlah",
-    accessor: "qty",
+    accessor: (item) => <div>{`${item.qty} ${item.unit}`}</div>,
   },
   {
     Header: "Harga satuan",
@@ -50,15 +49,14 @@ export default function Checkout() {
   let history = useHistory();
   let dispatch = useDispatch();
 
-  let [paymentMethod, setPaymentMethod] = React.useState({
-    label: "Cash",
-    id: "cash",
-  });
+  // let [paymentMethod] = React.useState({
+  //   label: "Cash",
+  //   id: "cash",
+  // });
 
   async function handleCreateOrder(formHook) {
     let payload = {
-      payment_method: paymentMethod.value,
-      customer: paymentMethod.label === "Charge" ? formHook.customer.value : "",
+      customer: formHook.customer.value,
     };
 
     let { data } = await createOrder(payload);
@@ -80,9 +78,10 @@ export default function Checkout() {
   return (
     <LayoutOne>
       <TopBar />
-      <Text as="h3"> Checkout </Text>
+      <br />
+      <Text as="h3"> Konfirmasi Pesanan </Text>
       <div>
-        <br /> <br />
+        <br />
         <Table
           items={cart}
           columns={columns}
@@ -90,14 +89,14 @@ export default function Checkout() {
           showPagination={false}
         />
         <br />
-        <div className="text-right">
-          <Text as="h4">Subtotal: {formatRupiah(sumPrice(cart))}</Text>
+        <div className="text-left">
+          <Text as="h4">Sub Total: {formatRupiah(sumPrice(cart))}</Text>
           <br />
           <LayoutSidebar
-            sidebarPosition="right"
+            sidebarPosition="left"
             sidebar={
               <div className="text-left ">
-                <FormControl label="Metode Bayar" color="black">
+                {/* <FormControl label="Metode Bayar" color="black">
                   <Select
                     options={[
                       { label: "Cash", value: "cash" },
@@ -106,16 +105,15 @@ export default function Checkout() {
                     onChange={(selected) => setPaymentMethod(selected)}
                     value={paymentMethod}
                   />
+                </FormControl> */}
+
+                <FormControl label="Customer" color="black">
+                  <SelectCustomer
+                    onChange={(option) => updateValue("customer", option)}
+                    value={getValues().customer}
+                    {...register("customer")}
+                  />
                 </FormControl>
-                {paymentMethod.label === "Charge" && (
-                  <FormControl label="Customer" color="black">
-                    <SelectCustomer
-                      onChange={(option) => updateValue("customer", option)}
-                      value={getValues().customer}
-                      {...register("customer")}
-                    />
-                  </FormControl>
-                )}
               </div>
             }
           />
@@ -126,7 +124,7 @@ export default function Checkout() {
             iconBefore={<FaRegCheckCircle />}
           >
             {" "}
-            Bayar{" "}
+            Pesan{" "}
           </Button>
         </div>
       </div>

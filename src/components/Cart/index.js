@@ -18,11 +18,11 @@ export default function Cart({ items, onItemInc, onItemDec, onCheckout }) {
           <FaCartPlus />
           <div className="ml-2">Keranjang</div>
         </div>
-
+        <br />
         <Text as="h5"> Total: {formatRupiah(total)} </Text>
-
+        <br />
         <Button
-          text="Checkout"
+          text="Pesan Sekarang"
           fitContainer
           iconAfter={<FaArrowRight />}
           disabled={!items.length}
