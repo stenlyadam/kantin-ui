@@ -17,6 +17,7 @@ import TopBar from "../../components/TopBar";
 import { clearItems } from "../../features/Cart/actions";
 import { formatRupiah } from "../../utils/format-rupiah";
 import { sumPrice } from "../../utils/sum-price";
+import { rules } from "./validation";
 
 const columns = [
   {
@@ -44,7 +45,7 @@ const columns = [
 export default function Checkout() {
   let cart = useSelector((state) => state.cart);
 
-  let { setValue, getValues, handleSubmit, register } = useForm();
+  let { setValue, getValues, handleSubmit, register, errors } = useForm();
 
   let history = useHistory();
   let dispatch = useDispatch();
@@ -53,6 +54,10 @@ export default function Checkout() {
   //   label: "Cash",
   //   id: "cash",
   // });
+
+  React.useEffect(() => {
+    register({ name: "customer" }, rules.customer);
+  }, [register]);
 
   async function handleCreateOrder(formHook) {
     let payload = {
@@ -107,11 +112,15 @@ export default function Checkout() {
                   />
                 </FormControl> */}
 
-                <FormControl label="Customer" color="black">
+                <FormControl
+                  label="Pelanggan"
+                  errorMessage={errors.customer?.message}
+                  color="black"
+                >
                   <SelectCustomer
                     onChange={(option) => updateValue("customer", option)}
                     value={getValues().customer}
-                    {...register("customer")}
+                    ref={register(rules.customer)}
                   />
                 </FormControl>
               </div>
