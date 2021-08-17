@@ -1,12 +1,15 @@
 import FaArrowRight from "@meronex/icons/fa/FaArrowRight";
-import FaFileInvoice from "@meronex/icons/fa/FaFileInvoice";
-import FaHome from "@meronex/icons/fa/FaHome";
+// import FaFileInvoice from "@meronex/icons/fa/FaFileInvoice";
+// import FaHome from "@meronex/icons/fa/FaHome";
 import FaDatabase from "@meronex/icons/fa/FaDatabase";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { Card, LayoutOne, Responsive, Text } from "upkit";
 import TopBar from "../../components/TopBar";
 import FaUser from "@meronex/icons/fa/FaUser";
+import FaChartBar from "@meronex/icons/fa/FaChartBar";
+import FaCashRegister from "@meronex/icons/fa/FaCashRegister";
+import FaListOl from "@meronex/icons/fa/FaListOl";
 
 const IconWrapper = ({ children }) => {
   return (
@@ -18,19 +21,19 @@ const IconWrapper = ({ children }) => {
 
 const menus = [
   {
-    label: "Beranda",
+    label: "Buat Pesanan",
     icon: (
       <IconWrapper>
-        <FaHome />
+        <FaCashRegister />
       </IconWrapper>
     ),
     url: "/",
   },
   {
-    label: "Pesanan",
+    label: "Daftar Pesanan",
     icon: (
       <IconWrapper>
-        <FaFileInvoice />
+        <FaListOl />
       </IconWrapper>
     ),
     url: "/history",
@@ -52,6 +55,15 @@ const menus = [
       </IconWrapper>
     ),
     url: "/manajemen-pelanggan",
+  },
+  {
+    label: "Laporan",
+    icon: (
+      <IconWrapper>
+        <FaChartBar />
+      </IconWrapper>
+    ),
+    url: "/report",
   },
   {
     label: "Logout",

@@ -15,7 +15,9 @@ import ProductEdit from "./pages/Product/ProductEdit";
 import CustomerManagement from "./pages/Customer/CustomerManagement";
 import CustomerAdd from "./pages/Customer/CustomerAdd";
 import CustomerEdit from "./pages/Customer/CustomerEdit";
+import Invoice from "./pages/Invoice";
 import Logout from "./pages/Logout";
+import Report from "./pages/Report";
 import GuardRoute from "./components/GuardRoute";
 
 import { Provider } from "react-redux";
@@ -67,6 +69,12 @@ function App() {
           <GuardRoute path="/history">
             <OrderHistory />
           </GuardRoute>
+          <GuardRoute path="/report">
+            <Report />
+          </GuardRoute>
+          <Route path="/invoice/:order_id">
+            <Invoice />
+          </Route>
           <GuardRoute path="/logout">
             <Logout />
           </GuardRoute>

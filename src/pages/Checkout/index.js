@@ -50,11 +50,6 @@ export default function Checkout() {
   let history = useHistory();
   let dispatch = useDispatch();
 
-  // let [paymentMethod] = React.useState({
-  //   label: "Cash",
-  //   id: "cash",
-  // });
-
   React.useEffect(() => {
     register({ name: "customer" }, rules.customer);
   }, [register]);
@@ -101,20 +96,9 @@ export default function Checkout() {
             sidebarPosition="left"
             sidebar={
               <div className="text-left ">
-                {/* <FormControl label="Metode Bayar" color="black">
-                  <Select
-                    options={[
-                      { label: "Cash", value: "cash" },
-                      { label: "Charge", value: "charge" },
-                    ]}
-                    onChange={(selected) => setPaymentMethod(selected)}
-                    value={paymentMethod}
-                  />
-                </FormControl> */}
-
                 <FormControl
-                  label="Pelanggan"
-                  errorMessage={errors.customer?.message}
+                  label="Customer"
+                  errorMessage={errors.category?.message}
                   color="black"
                 >
                   <SelectCustomer

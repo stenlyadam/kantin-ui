@@ -30,6 +30,7 @@ export async function updateProduct(payload, product_id) {
     ? JSON.parse(localStorage.getItem("auth"))
     : {};
 
+  console.log("payload product ", payload);
   return await axios.put(
     `${config.api_host}/api/products/${product_id}`,
     payload,

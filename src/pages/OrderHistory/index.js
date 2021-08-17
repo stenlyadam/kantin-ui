@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { LayoutOne, Table, Text, ButtonCircle } from "upkit";
+import { LayoutOne, Table, Text, ButtonCircle, Button } from "upkit";
 import { getOrders, deleteOrder } from "../../api/order";
 import TopBar from "../../components/TopBar";
 import { formatRupiah } from "../../utils/format-rupiah";
@@ -9,8 +9,9 @@ import StatusLabel from "../../components/StatusLabel";
 import { Link } from "react-router-dom";
 import FaEdit from "@meronex/icons/fa/FaEdit";
 import FaTrash from "@meronex/icons/fa/FaTrash";
+import FaFileInvoice from "@meronex/icons/fa/FaFileInvoiceDollar";
 
-export default function UserOrders() {
+export default function OrderHistory() {
   let [pesanan, setPesanan] = React.useState([]);
   let [count, setCount] = React.useState(0);
   let [status, setStatus] = React.useState("idle");
@@ -23,7 +24,6 @@ export default function UserOrders() {
 
     let { data } = await getOrders({ limit, page });
 
-    console.log(data.data);
     if (data.error) {
       setStatus("error");
       return;
@@ -91,32 +91,42 @@ export default function UserOrders() {
       },
     },
     {
+      Header: "Pembayaran",
+      accessor: (items) => {
+        return (
+          <div>
+            <Link to={`/invoice/${items._id}`}>
+              <Button color="gray" iconBefore={<FaFileInvoice />}>
+                Invoice
+              </Button>
+            </Link>
+          </div>
+        );
+      },
+    },
+    {
       Header: "Action",
       accessor: (items) => {
         return (
           <div>
-            {items.full_name !== "Guest" && (
-              <>
-                <Link to={`/edit-customer/${items._id}`}>
-                  <ButtonCircle icon={<FaEdit />} />
-                </Link>
+            <Link to={`/edit-customer/${items._id}`}>
+              <ButtonCircle icon={<FaEdit />} />
+            </Link>
 
-                <ButtonCircle
-                  onClick={() => {
-                    if (
-                      window.confirm(
-                        "Apakah anda yakin ingin menghapus pesanan ini ?"
-                      )
-                    ) {
-                      deleteOrder(items._id);
-                      notifDelete();
-                      setDelstatus(1);
-                    }
-                  }}
-                  icon={<FaTrash />}
-                />
-              </>
-            )}
+            <ButtonCircle
+              onClick={() => {
+                if (
+                  window.confirm(
+                    "Apakah anda yakin ingin menghapus pesanan ini ?"
+                  )
+                ) {
+                  deleteOrder(items._id);
+                  notifDelete();
+                  setDelstatus(1);
+                }
+              }}
+              icon={<FaTrash />}
+            />
           </div>
         );
       },
