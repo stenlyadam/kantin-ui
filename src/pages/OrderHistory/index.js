@@ -109,28 +109,24 @@ export default function UserOrders() {
       accessor: (items) => {
         return (
           <div>
-            {items.status !== "finished" && (
-              <>
-                {/* <Link to={`/edit-customer/${items._id}`}>
+            {/* <Link to={`/edit-customer/${items._id}`}>
                   <ButtonCircle icon={<FaEdit />} />
                 </Link> */}
 
-                <ButtonCircle
-                  onClick={() => {
-                    if (
-                      window.confirm(
-                        "Apakah anda yakin ingin menghapus pesanan ini ?"
-                      )
-                    ) {
-                      deleteOrder(items._id);
-                      notifDelete();
-                      setDelstatus(1);
-                    }
-                  }}
-                  icon={<FaTrash />}
-                />
-              </>
-            )}
+            <ButtonCircle
+              onClick={() => {
+                if (
+                  window.confirm(
+                    "Apakah anda yakin ingin menghapus pesanan ini ?"
+                  )
+                ) {
+                  deleteOrder(items._id);
+                  notifDelete();
+                  setDelstatus(1);
+                }
+              }}
+              icon={<FaTrash />}
+            />
           </div>
         );
       },

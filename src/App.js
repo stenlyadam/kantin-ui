@@ -18,6 +18,8 @@ import CustomerEdit from "./pages/Customer/CustomerEdit";
 import Invoice from "./pages/Invoice";
 import Logout from "./pages/Logout";
 import Report from "./pages/Report";
+import ChargeReport from "./pages/ChargeReport";
+import DetailChargeReport from "./pages/DetailChargeReport";
 import GuardRoute from "./components/GuardRoute";
 
 import { Provider } from "react-redux";
@@ -71,6 +73,12 @@ function App() {
           </GuardRoute>
           <GuardRoute path="/report">
             <Report />
+          </GuardRoute>
+          <GuardRoute path="/charge-report">
+            <ChargeReport />
+          </GuardRoute>
+          <GuardRoute path="/detail-charge-report/:customer_id">
+            <DetailChargeReport />
           </GuardRoute>
           <Route path="/invoice/:order_id">
             <Invoice />

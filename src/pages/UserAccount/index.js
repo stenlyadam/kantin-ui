@@ -1,5 +1,5 @@
 import FaArrowRight from "@meronex/icons/fa/FaArrowRight";
-// import FaFileInvoice from "@meronex/icons/fa/FaFileInvoice";
+import FaFileInvoice from "@meronex/icons/fa/FaFileInvoice";
 // import FaHome from "@meronex/icons/fa/FaHome";
 import FaDatabase from "@meronex/icons/fa/FaDatabase";
 import * as React from "react";
@@ -64,6 +64,15 @@ const menus = [
       </IconWrapper>
     ),
     url: "/report",
+  },
+  {
+    label: "Laporan Charge",
+    icon: (
+      <IconWrapper>
+        <FaFileInvoice />
+      </IconWrapper>
+    ),
+    url: "/charge-report",
   },
   {
     label: "Logout",
