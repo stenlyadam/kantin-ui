@@ -73,15 +73,13 @@ export default function Home() {
                 {products.data.map((product, index) => {
                   return (
                     <div key={index} className="p-2">
-                      {product.stock > 0 && (
-                        <CardProduct
-                          title={product.name}
-                          imgUrl={`${config.api_host}/upload/${product.image_url}`}
-                          price={product.price}
-                          subText={`Satuan: ${product.unit}`}
-                          onAddToCart={(_) => dispatch(addItem(product))}
-                        />
-                      )}
+                      <CardProduct
+                        title={product.name}
+                        imgUrl={`${config.api_host}/upload/${product.image_url}`}
+                        price={product.price}
+                        subText={`Satuan: ${product.unit}`}
+                        onAddToCart={(_) => dispatch(addItem(product))}
+                      />
                     </div>
                   );
                 })}

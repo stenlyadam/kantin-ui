@@ -7,11 +7,11 @@ import { formatRupiah } from "../../utils/format-rupiah";
 import { sumPrice } from "../../utils/sum-price";
 import StatusLabel from "../../components/StatusLabel";
 import { Link } from "react-router-dom";
-import FaEdit from "@meronex/icons/fa/FaEdit";
+// import FaEdit from "@meronex/icons/fa/FaEdit";
 import FaTrash from "@meronex/icons/fa/FaTrash";
 import FaFileInvoice from "@meronex/icons/fa/FaFileInvoiceDollar";
 
-export default function OrderHistory() {
+export default function UserOrders() {
   let [pesanan, setPesanan] = React.useState([]);
   let [count, setCount] = React.useState(0);
   let [status, setStatus] = React.useState("idle");
@@ -72,7 +72,7 @@ export default function OrderHistory() {
             {order.order_items.map((item) => {
               return (
                 <div key={item._id}>
-                  {item.name} ({item.qty} {item.unit})
+                  {item.name} ({item.qty})
                 </div>
               );
             })}
@@ -109,24 +109,28 @@ export default function OrderHistory() {
       accessor: (items) => {
         return (
           <div>
-            <Link to={`/edit-customer/${items._id}`}>
-              <ButtonCircle icon={<FaEdit />} />
-            </Link>
+            {items.status !== "finished" && (
+              <>
+                {/* <Link to={`/edit-customer/${items._id}`}>
+                  <ButtonCircle icon={<FaEdit />} />
+                </Link> */}
 
-            <ButtonCircle
-              onClick={() => {
-                if (
-                  window.confirm(
-                    "Apakah anda yakin ingin menghapus pesanan ini ?"
-                  )
-                ) {
-                  deleteOrder(items._id);
-                  notifDelete();
-                  setDelstatus(1);
-                }
-              }}
-              icon={<FaTrash />}
-            />
+                <ButtonCircle
+                  onClick={() => {
+                    if (
+                      window.confirm(
+                        "Apakah anda yakin ingin menghapus pesanan ini ?"
+                      )
+                    ) {
+                      deleteOrder(items._id);
+                      notifDelete();
+                      setDelstatus(1);
+                    }
+                  }}
+                  icon={<FaTrash />}
+                />
+              </>
+            )}
           </div>
         );
       },
