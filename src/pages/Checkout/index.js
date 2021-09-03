@@ -3,6 +3,7 @@ import * as React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
+
 import {
   Button,
   FormControl,
@@ -10,6 +11,7 @@ import {
   LayoutSidebar,
   Table,
   Text,
+  InputText,
 } from "upkit";
 import { createOrder } from "../../api/order";
 import SelectCustomer from "../../components/SelectCustomer";
@@ -61,7 +63,6 @@ export default function Checkout() {
 
     let { data } = await createOrder(payload);
 
-    console.log(data);
     if (data?.error) return;
 
     history.push("/");
@@ -88,6 +89,8 @@ export default function Checkout() {
           perPage={cart.length}
           showPagination={false}
         />
+        <br />
+        <InputText placeholder="Catatan" fitContainer name="notes" />
         <br />
         <div className="text-left">
           <Text as="h4">Sub Total: {formatRupiah(sumPrice(cart))}</Text>

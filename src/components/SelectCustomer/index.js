@@ -12,7 +12,7 @@ const SelectCustomer = ({ value, onChange, customer }) => {
     setIsFetching(true);
 
     axios
-      .get(`${config.api_host}/api/customers`)
+      .get(`${config.api_host}/api/customers-all`)
       .then(({ data }) => {
         if (!data.error) {
           setCustomers(data.data);

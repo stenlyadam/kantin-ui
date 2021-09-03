@@ -2,6 +2,12 @@ import axios from "axios";
 
 import { config } from "../config";
 
+export async function getAllCustomers(params) {
+  return await axios.get(`${config.api_host}/api/customers-all`, {
+    params,
+  });
+}
+
 export async function getCustomers(params) {
   return await axios.get(`${config.api_host}/api/customers`, {
     params,
