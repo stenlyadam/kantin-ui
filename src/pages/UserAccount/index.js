@@ -47,15 +47,7 @@ const menus = [
     ),
     url: "/manajemen-produk",
   },
-  {
-    label: "Pelanggan",
-    icon: (
-      <IconWrapper>
-        <FaUser />
-      </IconWrapper>
-    ),
-    url: "/manajemen-pelanggan",
-  },
+  
   {
     label: "Laporan",
     icon: (
