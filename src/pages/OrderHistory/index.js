@@ -61,7 +61,7 @@ export default function UserOrders() {
     {
       Header: "Pelanggan",
       accessor: (item) => {
-        return <div>{item.customer.full_name}</div>;
+        return <div>{item.customer}</div>;
       },
     },
     {

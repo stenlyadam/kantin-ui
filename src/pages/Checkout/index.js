@@ -57,12 +57,13 @@ export default function Checkout() {
   }, [register]);
 
   async function handleCreateOrder(formHook) {
+    // console.log('form Hook, ', formHook.customer)
     let payload = {
       customer: formHook.customer.value,
     };
 
     let { data } = await createOrder(payload);
-
+    
     if (data?.error) return;
 
     history.push("/");

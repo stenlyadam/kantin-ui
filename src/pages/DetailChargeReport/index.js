@@ -16,9 +16,10 @@ export default function DetailChargeReport() {
     setStatus("process");
 
     let { data } = await getDetailCustomerReport(params?.customer_id);
+
     setStatus("success");
     setDetailCustomerReport(data);
-    setCustomerName(data[0].customer.full_name);
+    setCustomerName(data[0].customer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

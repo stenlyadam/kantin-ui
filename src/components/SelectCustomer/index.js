@@ -12,10 +12,10 @@ const SelectCustomer = ({ value, onChange, customer }) => {
     setIsFetching(true);
 
     axios
-      .get(`${config.api_host}/api/customers-all`)
+      .get(`${config.api_host}/api/unklab-employees`)
       .then(({ data }) => {
         if (!data.error) {
-          setCustomers(data.data);
+          setCustomers(data);
         }
       })
       .finally((_) => setIsFetching(false));
@@ -24,8 +24,8 @@ const SelectCustomer = ({ value, onChange, customer }) => {
   return (
     <Select
       options={customers.map((customer) => ({
-        label: customer.full_name,
-        value: customer._id,
+        label: customer.Nama,
+        value: customer.Nama,
       }))}
       value={value}
       onChange={onChange}

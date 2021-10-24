@@ -90,7 +90,7 @@ export default function Invoice() {
             label: "Pelanggan",
             value: (
               <div>
-                <b>{invoice?.customer?.full_name} </b> <br />
+                <b>{invoice?.customer} </b> <br />
               </div>
             ),
           },
@@ -100,7 +100,7 @@ export default function Invoice() {
               <div>
                 {invoice?.payment_status !== "paid" && (
                   <div className="pb-10">
-                    {invoice?.customer?.full_name !== "Guest" && (
+                    {invoice?.customer !== "Guest" && (
                       <FormControl label="Metode Bayar" color="black">
                         <Select
                           options={[
