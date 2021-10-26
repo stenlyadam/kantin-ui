@@ -83,7 +83,13 @@ export default function ChargeReport() {
     <LayoutOne>
       <TopBar />
       <br />
-      <Text as="h3"> Laporan Charge </Text>
+      <Text as="h3">
+        {" "}
+        Laporan Charge{" "}
+        {`(${moment(localStorage.getItem("startDate")).format("ll")} -  ${moment(
+          localStorage.getItem("endDate")
+        ).format("ll")})`}
+      </Text>
       <br />
       <div className="w-1/3">
         <DatePicker
