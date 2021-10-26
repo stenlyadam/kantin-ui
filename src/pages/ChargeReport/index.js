@@ -17,16 +17,20 @@ export default function ChargeReport() {
   const [dateRange, setDateRange] = React.useState([null, null]);
   const [startDate, endDate] = dateRange;
 
-  // const fetchReport = React.useCallback(async () => {
-  //   setStatus("process");
-  //   let { data } = await getCustomerReport({ type: "month" });
-  //   setStatus("success");
-  //   setChargeReport(data);
-  // }, []);
+  const fetchReport = React.useCallback(async () => {
+    const start = localStorage.getItem("startDate");
+    const end = localStorage.getItem("endDate");
+    setStatus("process");
 
-  // React.useEffect(() => {
-  //   fetchReport();
-  // }, [fetchReport]);
+    let { data } = await getCustomerReport({ start, end });
+
+    setStatus("success");
+    setChargeReport(data);
+  }, []);
+
+  React.useEffect(() => {
+    fetchReport();
+  }, [fetchReport]);
 
   const columns = [
     {
@@ -90,7 +94,7 @@ export default function ChargeReport() {
           isClearable={true}
           className="shadow appearance-none border rounded w-full mb-3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
-       
+
         <Button onClick={handleSubmit}>Lihat Laporan</Button>
       </div>
       <br />
