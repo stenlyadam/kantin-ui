@@ -8,25 +8,25 @@ import FaFileInvoice from "@meronex/icons/fa/FaFileInvoiceDollar";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import moment from 'moment'
-
+import moment from "moment";
 
 export default function ChargeReport() {
   let [chargeReport, setChargeReport] = React.useState([]);
   let [status, setStatus] = React.useState("idle");
-  const [startDate, setStartDate] = React.useState(new Date());
-  const [endDate, setEndDate] = React.useState(new Date());
-  //   let [page, setPage] = React.useState(1);
-  //   let [limit] = React.useState(10);
 
-  const fetchReport = React.useCallback(async () => {
-    // setStatus("process");
+  const [dateRange, setDateRange] = React.useState([null, null]);
+  const [startDate, endDate] = dateRange;
 
-    // let { data } = await getCustomerReport({ type: "month" });
-    
-    // setStatus("success");
-    // setChargeReport(data);
-  }, []);
+  // const fetchReport = React.useCallback(async () => {
+  //   setStatus("process");
+  //   let { data } = await getCustomerReport({ type: "month" });
+  //   setStatus("success");
+  //   setChargeReport(data);
+  // }, []);
+
+  // React.useEffect(() => {
+  //   fetchReport();
+  // }, [fetchReport]);
 
   const columns = [
     {
@@ -57,39 +57,42 @@ export default function ChargeReport() {
     },
   ];
 
-  React.useEffect(() => {
-    fetchReport();
-  }, [fetchReport]);
+  const handleSubmit = async () => {
+    const start = moment(startDate).format("YYYY-MM-DD");
+    const end = moment(endDate).format("YYYY-MM-DD");
+    localStorage.setItem("startDate", start);
+    localStorage.setItem("endDate", end);
 
-  const handleSubmit = async() => {
-    // console.log("start ", moment(startDate).format('L'))
-    // console.log('end ', moment(endDate).format('L'))
-
-    const start =  moment(startDate).format('YYYY-MM-DD')
-    const end = moment(endDate).format('YYYY-MM-DD')
-
-    console.log({start, end})
     setStatus("process");
 
-    let { data } = await getCustomerReport({ type: "month", start, end });
-    
+    let { data } = await getCustomerReport({ start, end });
+
     setStatus("success");
     setChargeReport(data);
-  }
+  };
+
+  const handleChange = (updated) => {
+    setDateRange(updated);
+  };
 
   return (
     <LayoutOne>
       <TopBar />
       <br />
-      <Text as="h3"> Laporan Charge Dosen </Text>
+      <Text as="h3"> Laporan Charge </Text>
       <br />
-      <p>Tanggal Mulai: </p>
-      <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-      <p>Tanggal Akhir: </p>
-      <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
-      
-      <br/>
-      <button onClick={handleSubmit}>Lihat Laporan</button>
+      <div className="w-1/3">
+        <DatePicker
+          selectsRange={true}
+          startDate={startDate}
+          endDate={endDate}
+          onChange={handleChange}
+          isClearable={true}
+          className="shadow appearance-none border rounded w-full mb-3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
+       
+        <Button onClick={handleSubmit}>Lihat Laporan</Button>
+      </div>
       <br />
       <Table
         items={chargeReport}

@@ -13,9 +13,13 @@ export default function DetailChargeReport() {
   let [status, setStatus] = React.useState("idle");
 
   const fetchReport = React.useCallback(async () => {
+    
     setStatus("process");
 
-    let { data } = await getDetailCustomerReport(params?.customer_id);
+    const start = localStorage.getItem('startDate')
+    const end = localStorage.getItem('endDate')
+
+    let { data } = await getDetailCustomerReport(params?.customer_id, {start, end});
 
     setStatus("success");
     setDetailCustomerReport(data);
@@ -27,7 +31,7 @@ export default function DetailChargeReport() {
     {
       Header: "Order ID",
       accessor: (order) => {
-        return <div>#{order.order.order_number}</div>;
+        return <div>#{order.orders[0].order_number}</div>;
       },
     },
     {

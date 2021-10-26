@@ -25,8 +25,10 @@ export async function getCustomerReport(params) {
   });
 }
 
-export async function getDetailCustomerReport(customer_id) {
+export async function getDetailCustomerReport(customer_id, params) {
   return await axios.get(
-    `${config.api_host}/api/detail-customer-report/${customer_id}`
+    `${config.api_host}/api/detail-customer-report/${customer_id}`, {
+      params
+    }
   );
 }

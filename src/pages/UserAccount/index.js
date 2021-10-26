@@ -6,7 +6,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { Card, LayoutOne, Responsive, Text } from "upkit";
 import TopBar from "../../components/TopBar";
-import FaUser from "@meronex/icons/fa/FaUser";
+// import FaUser from "@meronex/icons/fa/FaUser";
 import FaChartBar from "@meronex/icons/fa/FaChartBar";
 import FaCashRegister from "@meronex/icons/fa/FaCashRegister";
 import FaListOl from "@meronex/icons/fa/FaListOl";
