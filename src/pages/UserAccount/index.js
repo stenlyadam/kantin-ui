@@ -49,7 +49,7 @@ const menus = [
   },
   
   {
-    label: "Laporan",
+    label: "Pendapatan",
     icon: (
       <IconWrapper>
         <FaChartBar />

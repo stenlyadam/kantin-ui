@@ -19,6 +19,12 @@ export async function getDailyIncome(params) {
   });
 }
 
+export async function getIncome(params) {
+  return await axios.get(`${config.api_host}/api/income/`, {
+    params,
+  });
+}
+
 export async function getCustomerReport(params) {
   return await axios.get(`${config.api_host}/api/customer-report/`, {
     params,
